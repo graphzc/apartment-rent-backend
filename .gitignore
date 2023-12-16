@@ -103,7 +103,7 @@ public/upload/category
 public/upload/food
 
 # dist
-dist
+# dist
 
 # joi generate
 prisma/generated-joi-schemas
