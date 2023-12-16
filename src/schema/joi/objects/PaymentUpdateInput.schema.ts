@@ -1,0 +1,18 @@
+// @ts-nocheck
+import Joi from 'joi';
+import { IntFieldUpdateOperationsInputSchemaObject } from './IntFieldUpdateOperationsInput.schema';
+import { NullableStringFieldUpdateOperationsInputSchemaObject } from './NullableStringFieldUpdateOperationsInput.schema';
+import { EnumPaymentStatusFieldUpdateOperationsInputSchemaObject } from './EnumPaymentStatusFieldUpdateOperationsInput.schema';
+import { DateTimeFieldUpdateOperationsInputSchemaObject } from './DateTimeFieldUpdateOperationsInput.schema';
+import { BookingUpdateOneRequiredWithoutPaymentNestedInputSchemaObject } from './BookingUpdateOneRequiredWithoutPaymentNestedInput.schema'
+
+export const PaymentUpdateInputSchemaObject = {
+    amount: Joi.alternatives().try(Joi.number(),
+Joi.object().keys(IntFieldUpdateOperationsInputSchemaObject)),
+  slip: Joi.alternatives().try(Joi.string(),
+Joi.object().keys(NullableStringFieldUpdateOperationsInputSchemaObject)),
+  status: Joi.alternatives().try(Joi.object().keys(EnumPaymentStatusFieldUpdateOperationsInputSchemaObject)),
+  createdAt: Joi.alternatives().try(Joi.object().keys(DateTimeFieldUpdateOperationsInputSchemaObject)),
+  updatedAt: Joi.alternatives().try(Joi.object().keys(DateTimeFieldUpdateOperationsInputSchemaObject)),
+  booking: Joi.object().keys(BookingUpdateOneRequiredWithoutPaymentNestedInputSchemaObject)
+}

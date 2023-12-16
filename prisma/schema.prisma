@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator joi {
+  provider = "prisma-joi-generator"
+  output   = "./generated-joi-schemas"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum PaymentStatus {
+  UNPAID
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String?
+  password  String
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  booking   Booking[]
+}
+
+model Apartment {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  room      Room[]
+}
+
+model Room {
+  id          Int       @id @default(autoincrement())
+  no          Int       @unique
+  apartmentId Int
+  apartment   Apartment @relation(fields: [apartmentId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  booking     Booking[]
+}
+
+model Booking {
+  id        Int       @id @default(autoincrement())
+  roomId    Int
+  room      Room      @relation(fields: [roomId], references: [id])
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  duration  Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payment   Payment[]
+}
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  bookingId Int
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  amount    Int
+  slip      String?
+  status    PaymentStatus
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
