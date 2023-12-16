@@ -107,3 +107,4 @@ dist
 
 # joi generate
 prisma/generated-joi-schemas
+.vercel
