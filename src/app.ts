@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: ['http://localhost:4000'], 
+    origin: ['*'], 
     methods: [ 'GET', 'POST', 'PUT', 'DELETE' ],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true 
@@ -24,3 +24,5 @@ setUpRouter(app);
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT);
 });
+
+export default app;
