@@ -3,7 +3,7 @@ import { healthCheck } from "@/controller/controller";
 import { login, myProfile, refreshToken, register } from "@/controller/authController";
 import authMiddleware from "@/middleware/authMiddleware";
 import { getAllApartment, getApartment } from "@/controller/apartmentController";
-
+import { getAllRoom, getRoom } from "@/controller/roomController";
 const apiRouter = (): Router => {
     const api = Router();
 
@@ -19,6 +19,9 @@ const apiRouter = (): Router => {
     api.get('/apartment', getAllApartment);
     api.get('/apartment/:id', getApartment);
     
+    // Room
+    api.get('/room', getAllRoom);
+    api.get('/room/:id', getRoom);
     return api;
 }
 

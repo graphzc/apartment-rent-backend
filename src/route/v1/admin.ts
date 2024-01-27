@@ -1,4 +1,5 @@
 import { createApartment, deleteApartment, getAllApartment, getApartment, updateApartment } from "@/controller/apartmentController";
+import { createRoom, deleteRoom, getAllRoom, getRoom, updateRoom } from "@/controller/roomController";
 import adminMiddleware from "@/middleware/adminMiddleware";
 import { Router } from "express";
 
@@ -11,6 +12,14 @@ const adminRouter = () : Router => {
     admin.post('/apartment', adminMiddleware, createApartment); 
     admin.delete('/apartment/:id', adminMiddleware, deleteApartment);
     admin.put('/apartment/:id', adminMiddleware, updateApartment);
+
+
+    // Room
+    admin.get('/room', adminMiddleware, getAllRoom);
+    admin.get('/room/:id', adminMiddleware, getRoom);
+    admin.post('/room',adminMiddleware,createRoom ); 
+    admin.delete('/room/:id', adminMiddleware, deleteRoom);
+    admin.put('/room/:id', adminMiddleware, updateRoom);
 
 
 
