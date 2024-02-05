@@ -6,8 +6,10 @@ const prisma = Prisma.client();
 
 const createRoom = async (room: CreateRoomType ): Promise<Room> => {
     const newRoom = await prisma.room.create({
-
-       data:room
+       data: room,
+       include: {
+           apartment: true
+       }
     });
     return newRoom;
 };
@@ -15,7 +17,10 @@ const createRoom = async (room: CreateRoomType ): Promise<Room> => {
 const getAllRoom = async (): Promise<Room[]> => {
     const rooms = await prisma.room.findMany({
         orderBy: {
-           id:"asc"
+            id:"asc",
+        },
+        include: {
+            apartment: true
         }
     });
 
@@ -26,6 +31,9 @@ const findRoomById = async (id: number): Promise<Room | null> => {
     const room = await prisma.room.findUnique({
         where: {
             id
+        },
+        include: {
+            apartment: true
         }
     });
     
@@ -37,7 +45,9 @@ const deleteRoom = async (id: number): Promise<Room | null> => {
         where: {
             id: id
         },
-
+        include: {
+            apartment: true
+        }
     });
 
     return deleted;
@@ -51,6 +61,9 @@ const editRoom = async (id: number, room: EditRoomType): Promise<Room | null> =>
         data: {
             ...room
         },
+        include: {
+            apartment: true
+        }
 
     });
 
@@ -63,8 +76,11 @@ const findRoomByNo = async (no: number): Promise<Room[]| null> => {
             no
         },
         orderBy: {
-            apartmentId:"asc"
-         }
+            apartmentId: "asc"
+        },
+        include: {
+            apartment: true
+        }
     });
 
     return rooms;
