@@ -21,7 +21,7 @@ const adminRouter = () : Router => {
     admin.delete('/room/:id', adminMiddleware, deleteRoom);
     admin.put('/room/:id', adminMiddleware, updateRoom);
 
-
+    // User
 
     return admin;
 }

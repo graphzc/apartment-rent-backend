@@ -20,7 +20,8 @@ const getAllRoom = async (): Promise<Room[]> => {
             id:"asc",
         },
         include: {
-            apartment: true
+            apartment: true,
+            booking: true
         }
     });
 

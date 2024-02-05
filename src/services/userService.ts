@@ -37,8 +37,28 @@ const deleteUser = async (id: string) => {
     return deleted;
 }
 
+const getAllUser = async () => {
+    const users = await prisma.user.findMany();
+
+    return users;
+}
+
+const findUserById = async (id: string) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            id,
+        }
+    });
+
+    return user;
+}
+
+
+
 export default {
     findUserByEmail,
     createUser,
     deleteUser,
+    getAllUser,
+    findUserById,
 }
