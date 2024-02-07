@@ -17,7 +17,7 @@ This is a backend API for apartment rent application.
 1. Clone the repo
 
 ```sh
-[git clone https://github.com/GraphZC/pw-doc-manager-api-ts.git](https://github.com/GraphZC/apartment-rent-backend.git)
+git clone https://github.com/GraphZC/apartment-rent-backend.git
 ```
 
 2. Install NPM packages
