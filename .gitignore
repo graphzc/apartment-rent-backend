@@ -108,3 +108,6 @@ public/upload/food
 # joi generate
 prisma/generated-joi-schemas
 .vercel
+
+# upload
+public/upload/slip
