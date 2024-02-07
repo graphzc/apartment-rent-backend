@@ -1,4 +1,5 @@
 import { createApartment, deleteApartment, getAllApartment, getApartment, updateApartment } from "@/controller/apartmentController";
+import { changePaymentStatus, findPaymentById, getAllPayments } from "@/controller/paymentController";
 import { createRoom, deleteRoom, getAllRoom, getRoom, updateRoom } from "@/controller/roomController";
 import adminMiddleware from "@/middleware/adminMiddleware";
 import { Router } from "express";
@@ -23,6 +24,10 @@ const adminRouter = () : Router => {
 
     // User
 
+    // Payment
+    admin.get('/payment/', adminMiddleware, getAllPayments);
+    admin.get('/payment/:id', adminMiddleware, findPaymentById);
+    admin.post('/payment/status', adminMiddleware, changePaymentStatus);
     return admin;
 }
 

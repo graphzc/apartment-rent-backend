@@ -8,7 +8,11 @@ const getAllBooking = async () => {
         include: {
             room: true,
             user: true,
-            payment: true
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         },
         orderBy: {
             id: 'asc'
@@ -20,11 +24,19 @@ const getAllBooking = async () => {
 
 const createBooking = async (booking: CreateBookingType) => {
     const newBooking = await prisma.booking.create({
-        data: booking,
+        data: {
+            ...booking,
+            startDate: new Date(booking.startDate),
+            endDate: new Date(booking.startDate.setMonth(booking.startDate.getMonth()+ booking.duration)),
+        },
         include: {
             room: true,
             user: true,
-            payment: true
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         }
     });
 
@@ -39,7 +51,11 @@ const findBookingById = async (id: number) => {
         include: {
             room: true,
             user: true,
-            payment: true
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         }
     });
 
@@ -54,7 +70,11 @@ const deleteBooking = async (id: number) => {
         include: {
             room: true,
             user: true,
-            payment: true
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         }
     });
 
@@ -72,12 +92,36 @@ const editBooking = async (id: number, booking: CreateBookingType) => {
         include: {
             room: true,
             user: true,
-            payment: true
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         }
     });
 
     return edited;
 }
+
+const findBookingByUserId = async (userId: string) => {
+    const bookings = await prisma.booking.findMany({
+        where: {
+            userId
+        },
+        include: {
+            room: true,
+            user: true,
+            payment: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
+        }
+    });
+
+    return bookings;
+}
+
 
 export default {
     getAllBooking,
@@ -85,6 +129,7 @@ export default {
     findBookingById,
     deleteBooking,
     editBooking,
+    findBookingByUserId,
 }
 
 

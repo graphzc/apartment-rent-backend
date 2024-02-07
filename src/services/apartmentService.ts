@@ -17,7 +17,12 @@ const createApartment = async (apartment: CreateApartmentType): Promise<Apartmen
 const getAllApartment = async (): Promise<Apartment[]> => {
     const apartments = await prisma.apartment.findMany({
         include: {
-            room: true
+            room: {
+                include: {
+                    booking: true
+                }
+            }
+
         },
         orderBy: {
             id: 'asc'

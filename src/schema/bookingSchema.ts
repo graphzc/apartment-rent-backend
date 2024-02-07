@@ -4,7 +4,6 @@ export const CreateBookingValidation = z.object({
     roomId: z.coerce.number().min(1),
     userId: z.coerce.string(),
     startDate: z.coerce.date(),
-    endDate: z.coerce.date(),
     duration: z.coerce.number().min(1),
 });
 

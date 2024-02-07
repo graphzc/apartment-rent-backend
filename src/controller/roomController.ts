@@ -16,7 +16,7 @@ export const getRoom = async (req: Request, res: Response) => {
 
     if (!room) {
         return res.status(404).json({
-            message: "z not found"
+            message: "room not found"
         });
     }
 
@@ -28,8 +28,7 @@ export const createRoom = async (req: Request, res: Response) => {
         const payload = CreateRoomValidation.parse(req.body)
         
         const isExist = await roomService.findRoomByNo(payload.no);
-
-        if (isExist) {
+        if (isExist.length > 0) {
             return res.status(400).json({
                 message: "Room already exist"
             });

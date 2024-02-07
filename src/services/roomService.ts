@@ -21,7 +21,11 @@ const getAllRoom = async (): Promise<Room[]> => {
         },
         include: {
             apartment: true,
-            booking: true
+            booking: {
+                orderBy: {
+                    id: "desc"
+                }
+            }
         }
     });
 
@@ -34,7 +38,12 @@ const findRoomById = async (id: number): Promise<Room | null> => {
             id
         },
         include: {
-            apartment: true
+            apartment: true,
+            booking: {
+                orderBy: {
+                    id: "desc"
+                }
+            }
         }
     });
     
@@ -71,7 +80,7 @@ const editRoom = async (id: number, room: EditRoomType): Promise<Room | null> =>
     return edited;
 }
 
-const findRoomByNo = async (no: number): Promise<Room[]| null> => {
+const findRoomByNo = async (no: number): Promise<Room[]> => {
     const rooms = await prisma.room.findMany({
         where: {
             no
@@ -80,7 +89,12 @@ const findRoomByNo = async (no: number): Promise<Room[]| null> => {
             apartmentId: "asc"
         },
         include: {
-            apartment: true
+            apartment: true,
+            booking: {
+                orderBy: {
+                    id: "desc"
+                }
+            }
         }
     });
 
