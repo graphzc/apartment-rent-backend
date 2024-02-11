@@ -42,8 +42,13 @@ const findRoomById = async (id: number): Promise<Room | null> => {
             booking: {
                 orderBy: {
                     id: "desc"
+                },
+                include: {
+                    user: true
                 }
-            }
+            },
+
+
         }
     });
     

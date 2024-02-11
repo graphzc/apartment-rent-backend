@@ -67,7 +67,7 @@ export const updateRoom = async (req: Request, res: Response) => {
 
         const isExist = await roomService.findRoomByNo(payload.no);
 
-        if (isExist) {
+        if (isExist.length > 0) {
             return res.status(400).json({
                 message: "Room already exist"
             });
