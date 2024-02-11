@@ -107,4 +107,3 @@ public/upload/slip
 # joi generate
 prisma/generated-joi-schemas
 .vercel
-
