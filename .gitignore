@@ -99,8 +99,7 @@ web_modules/
 .pnp.*
 
 # upload 
-public/upload/category
-public/upload/food
+public/upload/slip
 
 # dist
 # dist
@@ -108,3 +107,4 @@ public/upload/food
 # joi generate
 prisma/generated-joi-schemas
 .vercel
+
