@@ -64,6 +64,11 @@ const findBookingById = async (id: number) => {
                     id: 'desc'
                 }
             },
+            utility: {
+                orderBy: {
+                    id: 'desc'
+                }
+            }
         },
     });
 

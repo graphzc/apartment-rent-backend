@@ -6,6 +6,7 @@ import { deleteBooking, getAllBooking, getBookingById } from "@/controller/booki
 import { deleteUser, getAllUser, getUser } from "@/controller/userController";
 import adminMiddleware from "@/middleware/adminMiddleware";
 import { Router } from "express";
+import { createUtility, getAllUtility, getUtilityById } from "@/controller/utilityController";
 
 const adminRouter = () : Router => {
     const admin = Router();
@@ -46,6 +47,11 @@ const adminRouter = () : Router => {
     admin.get('/booking/:id', adminMiddleware, getBookingById);
     admin.delete('/booking/:id', adminMiddleware, deleteBooking);
     
+    // Utility
+    admin.get('/utility', adminMiddleware, getAllUtility);
+    admin.get('/utility/:id', adminMiddleware, getUtilityById);
+    admin.post('/utility', adminMiddleware, createUtility);
+
     return admin;
 }
 
