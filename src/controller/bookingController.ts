@@ -1,4 +1,4 @@
-import { CreateBookingValidation } from '@/schema/bookingSchema';
+import { CreateBookingValidation, EditBookingValidation } from '@/schema/bookingSchema';
 import authService from '@/services/authService';
 import bookingService from '@/services/bookingService';
 import paymentService from '@/services/paymentService';
@@ -79,6 +79,41 @@ export const getBookingById = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     const booking = await bookingService.findBookingById(id);
+
+    if (!booking) {
+        return res.status(404).json({
+            message: "Booking not found"
+        });
+    }
+
+    return res.status(200).json(booking);
+}
+
+export const getAllBooking = async (req: Request, res: Response) => {
+    const bookings = await bookingService.getAllBooking();
+
+    return res.status(200).json(bookings);
+}
+
+export const editBooking = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const payload = EditBookingValidation.parse(req.body);
+
+    const booking = await bookingService.editBooking(id, payload);
+
+    if (!booking) {
+        return res.status(404).json({
+            message: "Booking not found"
+        });
+    }
+
+    return res.status(200).json(booking);
+}
+
+export const deleteBooking = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    const booking = await bookingService.deleteBooking(id);
 
     if (!booking) {
         return res.status(404).json({

@@ -61,15 +61,36 @@ model Booking {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   payment   Payment[]
+  utility   Utility[]
 }
 
 model Payment {
-  id        Int      @id @default(autoincrement())
+  id        Int           @id @default(autoincrement())
   bookingId Int
-  booking   Booking  @relation(fields: [bookingId], references: [id])
+  booking   Booking       @relation(fields: [bookingId], references: [id])
   amount    Int
   slip      String?
   status    PaymentStatus
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model News {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  endDate   DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Utility {
+  id          Int      @id @default(autoincrement())
+  forMonth    DateTime
+  electricity Int
+  plumbing    Int
+  bookingId   Int
+  booking     Booking  @relation(fields: [bookingId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

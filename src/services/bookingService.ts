@@ -6,13 +6,17 @@ const prisma = Prisma.client()
 const getAllBooking = async () => {
     const bookings = await prisma.booking.findMany({
         include: {
-            room: true,
+            room: {
+                include: {
+                    apartment: true
+                }
+            },
             user: true,
             payment: {
                 orderBy: {
                     id: 'desc'
                 }
-            }
+            },
         },
         orderBy: {
             id: 'asc'
@@ -49,14 +53,23 @@ const findBookingById = async (id: number) => {
             id
         },
         include: {
-            room: true,
+            room: {
+                include: {
+                    apartment: true
+                }
+            },
             user: true,
             payment: {
                 orderBy: {
                     id: 'desc'
                 }
+            },
+            utility: {
+                orderBy: {
+                    id: 'desc'
+                }
             }
-        }
+        },
     });
 
     return booking;

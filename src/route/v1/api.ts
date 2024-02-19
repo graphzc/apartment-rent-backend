@@ -7,6 +7,7 @@ import { getAllRoom, getRoom } from "@/controller/roomController";
 import { createBooking, getBookingById, getMyBooking } from "@/controller/bookingController";
 import { findPaymentById, uploadSlip } from "@/controller/paymentController";
 import { uploadSlipMiddleware } from "@/middleware/fileUploadMiddleware";
+import { getCurrentNews } from "@/controller/newsController";
 
 const apiRouter = (): Router => {
     const api = Router();
@@ -35,6 +36,10 @@ const apiRouter = (): Router => {
     // Payment
     api.get('/payment/:id', findPaymentById);
     api.post('/payment/slip', uploadSlipMiddleware.single('slip') , uploadSlip);
+    
+    // News
+    api.get('/news', getCurrentNews);
+
     return api;
 }
 
