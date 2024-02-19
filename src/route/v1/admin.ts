@@ -1,4 +1,5 @@
 import { createApartment, deleteApartment, getAllApartment, getApartment, updateApartment } from "@/controller/apartmentController";
+import { createNews, deleteNews, getAllNews, getNewsById, updateNews } from "@/controller/newsController";
 import { changePaymentStatus, findPaymentById, getAllPayments } from "@/controller/paymentController";
 import { createRoom, deleteRoom, getAllRoom, getRoom, updateRoom } from "@/controller/roomController";
 import { deleteUser, getAllUser, getUser } from "@/controller/userController";
@@ -34,6 +35,14 @@ const adminRouter = () : Router => {
     admin.get('/payment/', adminMiddleware, getAllPayments);
     admin.get('/payment/:id', adminMiddleware, findPaymentById);
     admin.post('/payment/status', adminMiddleware, changePaymentStatus);
+    
+    // News
+    admin.get('/news', adminMiddleware, getAllNews);
+    admin.get('/news/:id', adminMiddleware, getNewsById);
+    admin.post('/news', adminMiddleware, createNews);
+    admin.put('/news/:id', adminMiddleware, updateNews);
+    admin.delete('/news/:id', adminMiddleware, deleteNews);
+
     return admin;
 }
 
