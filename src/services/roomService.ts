@@ -44,11 +44,14 @@ const findRoomById = async (id: number): Promise<Room | null> => {
                     id: "desc"
                 },
                 include: {
-                    user: true
+                    user: true,
+                    utility: {
+                        orderBy: {
+                            id: "desc"
+                        }
+                    }
                 }
             },
-
-
         }
     });
     
