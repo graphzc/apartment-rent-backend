@@ -46,4 +46,4 @@ USER appuser
 EXPOSE 8080
 
 # Start your server
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/app.js"]
