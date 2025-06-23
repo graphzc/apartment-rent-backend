@@ -28,6 +28,9 @@ WORKDIR /app
 # Create non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
+# Install openssql
+RUN apk add --no-cache openssl
+
 # Copy necessary files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
