@@ -3,6 +3,9 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+# Install openssql
+RUN apk add --no-cache openssl
+
 # Install pnpm (change to npm/yarn if needed)
 RUN npm install -g pnpm
 
