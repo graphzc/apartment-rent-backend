@@ -48,5 +48,15 @@
   "pre-commit": [
     "build",
     "add-build"
-  ]
+  ],
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "bcrypt",
+      "pre-commit",
+      "prisma",
+      "spawn-sync"
+    ]
+  }
 }
